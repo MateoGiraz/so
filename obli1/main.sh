@@ -27,6 +27,7 @@ option1_handler () {
 	fi
 
 	echo "$matricula | $ci | $date" >> matriculas.txt
+	echo "Registro: $matricula | $ci | $date" >> log$fn.txt
 	echo "Operacion exitosa"
 	sleep 1
 
@@ -48,9 +49,11 @@ option2_handler () {
 		do
 			savedDay=${line:24}
 			if [[ $savedDay > $today ]]; then
-				echo "${line:0:20} | En Orden"
+				echo "${line:0:22} | En Orden"
+				echo "Consulta: ${line:0:22} | En Orden" >> log$fn.txt
 			else
-				echo "${line:0:20} | Vencida"
+				echo "${line:0:22} | Vencida"
+				echo "Consulta: ${line:0:22} | Vencida" >> log$fn.txt
 			fi
 		done < matriculas.txt
 		sleep 5
@@ -72,7 +75,7 @@ option3_handler () {
 		sleep 2
 		return
 	fi
-	
+	echo "Se consulto por la cedula: $ci" >> log$fn.txt
 	matCount=0
 	while IFS= read -r line	
 		do
@@ -81,7 +84,7 @@ option3_handler () {
 				matCount=$((matCount+1))
 			fi
 		done < matriculas.txt
-	echo "Hay $matCount matrículas asociadas al usuario"
+	echo "Hay $matCount matrícula/s asociadas al usuario"
 	sleep 5
 
 }
@@ -102,11 +105,13 @@ case $permissionOption in
 	1) clear
 		echo $passwordAdmin | chmod -x matriculas.txt
 		echo "Modificación realizada correctamente"
+		echo "Se cambió permiso de modificación a solo lectura" >> log$fn.txt
 		sleep 2
 		;;
 	2) clear
 		echo $passwordAdmin | chmod +x matriculas.txt
 		echo "Modificación realizada correctamente"
+		echo "Se cambió permiso de modificación a lectura y escritura " >> log$fn.txt
 		sleep 2
 		;;
 	*) clear
@@ -118,6 +123,19 @@ esac
 }
 
 option=0
+STATUS_FILE=last.txt
+
+if [ ! -d "logs" ]; then
+	mkdir logs
+fi
+
+if [[ ! -f "$STATUS_FILE" ]]; then
+	echo "0" >> $STATUS_FILE
+fi
+
+num=$(cat $STATUS_FILE)
+fn=$((num+1))
+echo $fn > $STATUS_FILE
 
 while [ $option -ne 5 ] ; do
 clear
@@ -143,6 +161,7 @@ case $option in
 		option4_handler
 		;;
 	5) clear
+		mv log$fn.txt ./logs
 		;;
 	*) clear
 		echo "invalid op"
