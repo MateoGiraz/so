@@ -6,39 +6,43 @@
 sem_t p, q, s, t, u, v;
 
 void* a(void * x){
-	printf("A\n");
+  printf("A\n");
 	sem_post(&p);
   sem_post(&q);
 }
 
 void* b(void * x){
-	sem_wait(&p);
+  sem_wait(&p);
+  sleep(1+(rand() % 4));
   printf("B\n");
 }
 
 void* c(void * x){
-	sem_wait(&q);
-	printf("C\n");
+  sem_wait(&q);
+	sleep(1+(rand() % 4));
+  printf("C\n");
   sem_post(&s);
   sem_post(&t);
 }
 
 void* d(void * x){
-	sem_wait(&s);
-	printf("D\n");
+  sem_wait(&s);
+  sleep(1+(rand() % 4));
+  printf("D\n");
   sem_post(&u);
 }
 
 void* e(void * x){
 	sem_wait(&t);
-	printf("E\n");
+  sleep(1+(rand() % 4));
+  printf("E\n");
   sem_post(&v);
 }
 
 void* f(void * x){
 	sem_wait(&v);
   sem_wait(&u);
-	printf("F\n");
+  printf("F\n");
 }
 
 
