@@ -72,5 +72,13 @@ int main(){
   pthread_join(te, NULL);
 	pthread_join(tf, NULL);
 
+	sem_destroy(&p);
+	sem_destroy(&q);
+	sem_destroy(&s);
+  sem_destroy(&t);
+	sem_destroy(&u);
+	sem_destroy(&v);
+
+
 	return 0;
 }
