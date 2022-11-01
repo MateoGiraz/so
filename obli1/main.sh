@@ -103,13 +103,13 @@ read passwordAdmin
 
 case $permissionOption in
 	1) clear
-		echo $passwordAdmin | chmod -x matriculas.txt
+		echo $passwordAdmin | chmod -w matriculas.txt
 		echo "Modificación realizada correctamente"
 		echo "Se cambió permiso de modificación a solo lectura" >> log$fn.txt
 		sleep 2
 		;;
 	2) clear
-		echo $passwordAdmin | chmod +x matriculas.txt
+		echo $passwordAdmin | chmod +w matriculas.txt
 		echo "Modificación realizada correctamente"
 		echo "Se cambió permiso de modificación a lectura y escritura " >> log$fn.txt
 		sleep 2
