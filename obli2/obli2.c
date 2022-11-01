@@ -18,7 +18,7 @@ void *b(void *x)
 {
 	sem_wait(&p);
 	srand(time(NULL));
-	sleep(1 + (rand() % 4));
+	sleep(1 + (rand() % 5));
 	printf("B\n");
 }
 
@@ -26,7 +26,7 @@ void *c(void *x)
 {
 	sem_wait(&q);
 	srand(time(NULL));
-	sleep(1 + (rand() % 4));
+	sleep(1 + (rand() % 5));
 	printf("C\n");
 	sem_post(&s);
 	sem_post(&t);
@@ -36,7 +36,7 @@ void *d(void *x)
 {
 	sem_wait(&s);
 	srand(time(NULL));
-    sleep(1 + (rand() % 4));
+    	sleep(1 + (rand() % 5));
 	printf("D\n");
 	sem_post(&u);
 }
@@ -45,7 +45,7 @@ void *e(void *x)
 {
 	sem_wait(&t);
 	srand(time(NULL));
-    sleep(1 + (rand() % 4));
+    	sleep(1 + (rand() % 4));
 	printf("E\n");
 	sem_post(&v);
 }
