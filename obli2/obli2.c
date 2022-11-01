@@ -2,6 +2,8 @@
 #include <semaphore.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
+
 
 sem_t p, q, s, t, u, v;
 
@@ -15,6 +17,7 @@ void *a(void *x)
 void *b(void *x)
 {
 	sem_wait(&p);
+	srand(time(NULL));
 	sleep(1 + (rand() % 4));
 	printf("B\n");
 }
@@ -22,6 +25,7 @@ void *b(void *x)
 void *c(void *x)
 {
 	sem_wait(&q);
+	srand(time(NULL));
 	sleep(1 + (rand() % 4));
 	printf("C\n");
 	sem_post(&s);
@@ -31,7 +35,8 @@ void *c(void *x)
 void *d(void *x)
 {
 	sem_wait(&s);
-	sleep(1 + (rand() % 4));
+	srand(time(NULL));
+    sleep(1 + (rand() % 4));
 	printf("D\n");
 	sem_post(&u);
 }
@@ -39,7 +44,8 @@ void *d(void *x)
 void *e(void *x)
 {
 	sem_wait(&t);
-	sleep(1 + (rand() % 4));
+	srand(time(NULL));
+    sleep(1 + (rand() % 4));
 	printf("E\n");
 	sem_post(&v);
 }
