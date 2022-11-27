@@ -29,6 +29,9 @@ option1_handler () {
 	echo "$matricula | $ci | $date" >> matriculas.txt
 	echo "Registro: $matricula | $ci | $date" >> log$fn.txt
 	echo "Operacion exitosa"
+	if [ ! -r . ]; then
+		echo "La operación no será guardada porque el usuario no tiene permisos de administrador"
+	fi
 	sleep 1
 
 }
@@ -97,19 +100,15 @@ echo "2) Permitir modificaciones"
 
 read permissionOption
 
-echo "Ingresar password admin"
-
-read passwordAdmin
-
 case $permissionOption in
 	1) clear
-		echo $passwordAdmin | chmod -w matriculas.txt
+		sudo chmod -w matriculas.txt
 		echo "Modificación realizada correctamente"
 		echo "Se cambió permiso de modificación a solo lectura" >> log$fn.txt
 		sleep 2
 		;;
 	2) clear
-		echo $passwordAdmin | chmod +w matriculas.txt
+		sudo chmod +w matriculas.txt
 		echo "Modificación realizada correctamente"
 		echo "Se cambió permiso de modificación a lectura y escritura " >> log$fn.txt
 		sleep 2
