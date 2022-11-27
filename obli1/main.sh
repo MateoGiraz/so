@@ -29,7 +29,8 @@ option1_handler () {
 	echo "$matricula | $ci | $date" >> matriculas.txt
 	echo "Registro: $matricula | $ci | $date" >> log$fn.txt
 	echo "Operacion exitosa"
-	if [ ! -r . ]; then
+	CURRENT_FILE=main.sh
+	if [ ! -r "$CURRENT_FILE" ]; then
 		echo "La operación no será guardada porque el usuario no tiene permisos de administrador"
 	fi
 	sleep 1
