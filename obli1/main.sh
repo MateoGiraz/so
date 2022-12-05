@@ -25,14 +25,16 @@ option1_handler () {
 		sleep 2
 		return
 	fi
-
+	
+	CURRENT_FILE=main.sh
+	if [ ! -w "$CURRENT_FILE" ]; then
+		echo "La operación no será guardada porque el usuario no tiene permisos de administrador"
+		return
+	fi
+	
 	echo "$matricula | $ci | $date" >> matriculas.txt
 	echo "Registro: $matricula | $ci | $date" >> log$fn.txt
 	echo "Operacion exitosa"
-	CURRENT_FILE=main.sh
-	if [ ! -r "$CURRENT_FILE" ]; then
-		echo "La operación no será guardada porque el usuario no tiene permisos de administrador"
-	fi
 	sleep 1
 
 }
