@@ -3,7 +3,7 @@
 option1_handler () {
 	
 	read -p "Ingrese la matricula: " matricula
-	if [[ ! $matricula =~ ^S{1}[BCDFGHJKLMNPRSTVWXYZ]{2}-[0-9]{4}$ ]]; then
+	if [[ ! $matricula =~ ^S{1}[ABCDEFGHIJKLMNÑOPQRSTUVWXYZ]{2}-[0-9]{4}$ ]]; then
 		clear
 		echo "matricula invalida"
 		sleep 2
