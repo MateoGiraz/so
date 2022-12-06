@@ -1,0 +1,10 @@
+Registro: SBV-5714 | 5.268.288-0 | 2002-12-03
+Registro: SAA-4346 | 5.234.547-5 | 2023-03-04
+Consulta: SBV-5714 | 5.268.288-0 | Vencida
+Consulta: SAA-4346 | 5.234.547-5 | Vencida
+Consulta: SBV-5714 | 5.268.288-0 | Vencida
+Consulta: SAA-4346 | 5.234.547-5 | Vencida
+Consulta: SBV-5714 | 5.268.288-0 | Vencida
+Consulta: SAA-4346 | 5.234.547-5 | Vencida
+Se consulto por la cedula: 5.268.288-0
+Se cambió permiso de modificación a solo lectura

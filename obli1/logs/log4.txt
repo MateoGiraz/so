@@ -1,0 +1,1 @@
+Se cambió permiso de modificación a solo lectura
